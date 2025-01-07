@@ -6,7 +6,10 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <div id="app">{{message}}</div>
+    <div id="app">
+      <h1>{{message}}</h1>
+      <button @Click="clickMe">Click Me</button>
+    </div>
 
     <script>
       const app = Vue.createApp({
@@ -14,6 +17,11 @@
           return {
             message: "Hello From Vue!",
           };
+        },
+        methods: {
+          clickMe() {
+            console.log("Button Clicked");
+          },
         },
       });
       app.mount("#app");
