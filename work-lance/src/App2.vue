@@ -1,11 +1,15 @@
 <script>
 export default {
-  setup() {
-    const name = "Anne Tran";
-    const status = "active";
-    const tasks = ["Task One", "Task Two", "Task Three"];
-
-    const toggleStatus = () => {
+  data() {
+    return {
+      name: "Elise Lee",
+      status: "active",
+      tasks: ["Task One", "Task Two", "Task Three"],
+      link: "https://google.com",
+    };
+  },
+  methods: {
+    toggleStatus() {
       if (this.status === "active") {
         this.status = "pending";
       } else if (this.status === "pending") {
@@ -13,7 +17,7 @@ export default {
       } else {
         this.status = "active";
       }
-    };
+    },
   },
 };
 </script>
@@ -28,6 +32,7 @@ export default {
   <ul>
     <li v-for="task in tasks" :key="task">{{ task }}</li>
   </ul>
+  <a :href="link">Click for google</a>
   <br />
   <!-- <button v-on:click="toggleStatus">Change status</button> -->
   <button @click="toggleStatus">Change status</button>
