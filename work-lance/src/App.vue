@@ -30,7 +30,11 @@ const deleteTask = (index) => {
 onMounted(async () => {
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-  } catch (error) {}
+    const data = await response.json();
+    tasks.value = data.map((task) => task.title);
+  } catch (error) {
+    console.log("Error fetching tasks");
+  }
 });
 </script>
 
