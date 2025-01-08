@@ -16,7 +16,12 @@ const toggleStatus = () => {
   }
 };
 
-const addTask = () => {};
+const addTask = () => {
+  if (newTask.value.trim() !== "") {
+    tasks.value.push(newTask.value);
+    newTask.value = "";
+  }
+};
 </script>
 
 <template>
@@ -33,7 +38,10 @@ const addTask = () => {};
 
   <h3>Tasks:</h3>
   <ul>
-    <li v-for="task in tasks" :key="task">{{ task }}</li>
+    <li v-for="(task, index) in tasks" :key="task">
+      <span>{{ task }}</span>
+      <button @click="deleteTask()">x</button>
+    </li>
   </ul>
   <br />
   <!-- <button v-on:click="toggleStatus">Change status</button> -->
