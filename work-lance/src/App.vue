@@ -1,3 +1,4 @@
-<template>
-  <h1 class="text-2xl">WorkLance</h1>
-</template>
+<script setup>
+import NavBar from "@/components/NavBar.vue";
+</script>
+<template><NavBar />></template>
