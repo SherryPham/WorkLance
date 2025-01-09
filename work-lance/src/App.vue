@@ -1,3 +1,3 @@
 <template>
-  <h1>WorkLance</h1>
+  <h1 class="text-2xl">WorkLance</h1>
 </template>
