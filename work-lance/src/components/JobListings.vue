@@ -2,6 +2,7 @@
 import { RouterLink } from "vue-router";
 import JobListing from "./JobListing.vue";
 import { reactive, defineProps, onMounted } from "vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
 
 defineProps({
@@ -37,7 +38,7 @@ onMounted(async () => {
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <JobListing
-          v-for="job in jobs.slice(0, limit || jobs.length)"
+          v-for="job in state.jobs.slice(0, limit || state.jobs.length)"
           :key="job.id"
           :job="job"
         />
