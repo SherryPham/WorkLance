@@ -16,7 +16,20 @@ const form = reactive({
 });
 
 const handleSubmit = async () => {
-  console.log(form.title);
+  const newJob = {
+    type: form.type,
+    title: form.title,
+    location: form.location,
+    description: form.description,
+    salary: form.salary,
+    company: {
+      name: form.company.name,
+      description: form.company.description,
+      contactEmail: form.company.contactEmail,
+      contactPhone: form.company.contactPhone,
+    },
+  };
+  console.log(newJob);
 };
 </script>
 
