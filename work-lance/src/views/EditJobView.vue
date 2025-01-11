@@ -1,12 +1,11 @@
 <script setup>
 import router from "@/router";
 import { reactive, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useToast } from "vue-toastification";
 import axios from "axios";
 
 const route = useRoute();
-const router = useRouter();
 
 const jobId = route.params.id;
 
@@ -32,7 +31,7 @@ const state = reactive({
 const toast = useToast();
 
 const handleSubmit = async () => {
-  const newJob = {
+  const updatedJob = {
     type: form.type,
     title: form.title,
     location: form.location,
@@ -47,12 +46,12 @@ const handleSubmit = async () => {
   };
 
   try {
-    const response = await axios.post("/api/jobs", newJob);
-    toast.success("Job Added Successfully");
+    const response = await axios.put(`/api/jobs/${jobId}`, updatedJob);
+    toast.success("Job Updated Successfully");
     router.push(`/jobs/${response.data.id}`);
   } catch (error) {
     console.error("Error fetching job", error);
-    toast.error("Job Was Not Added");
+    toast.error("Job Was Not Updated");
   }
 };
 
@@ -70,7 +69,11 @@ onMounted(async () => {
     form.company.description = state.job.company.description;
     form.company.contactEmail = state.job.company.contactEmail;
     form.company.contactPhone = state.job.company.contactPhone;
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error Fetching Job", error);
+  } finally {
+    state.isLoading = false;
+  }
 });
 </script>
 
