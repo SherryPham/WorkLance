@@ -15,7 +15,7 @@ const state = reactive({
 
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:5000/jobs/${jobId}");
+    const response = await axios.get(`http://localhost:5000/jobs/${jobId}`);
     state.job = response.data;
   } catch (error) {
     console.error("Error fetching job", error);
@@ -26,22 +26,22 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section class="bg-green-50">
+  <section v-if="!state.isLoading" class="bg-green-50">
     <div class="container m-auto py-10 px-6">
       <div class="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
         <main>
           <div
             class="bg-white p-6 rounded-lg shadow-md text-center md:text-left"
           >
-            <div class="text-gray-500 mb-4">Full-Time</div>
-            <h1 class="text-3xl font-bold mb-4">Senior Vue Developer</h1>
+            <div class="text-gray-500 mb-4">{{ state.job.type }}</div>
+            <h1 class="text-3xl font-bold mb-4">{{ state.job.title }}</h1>
             <div
               class="text-gray-500 mb-4 flex align-middle justify-center md:justify-start"
             >
               <i
                 class="fa-solid fa-location-dot text-lg text-orange-700 mr-2"
               ></i>
-              <p class="text-orange-700">Boston, MA</p>
+              <p class="text-orange-700">{{ state.job.location }}</p>
             </div>
           </div>
 
@@ -109,4 +109,8 @@ onMounted(async () => {
       </div>
     </div>
   </section>
+
+  <div v-else class="text-center text-gray-500 py-6">
+    <PulseLoader />
+  </div>
 </template>

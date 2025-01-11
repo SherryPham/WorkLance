@@ -40,6 +40,7 @@ onMounted(async () => {
       <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
         <PulseLoader />
       </div>
+
       <!-- show JobListings when done loading -->
       <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <JobListing
