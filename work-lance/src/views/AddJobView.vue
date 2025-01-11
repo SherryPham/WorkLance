@@ -14,6 +14,10 @@ const form = reactive({
     contactPhone: "",
   },
 });
+
+const handleSubmit = async () => {
+  console.log(form.title);
+};
 </script>
 
 <template>
@@ -22,7 +26,7 @@ const form = reactive({
       <div
         class="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
       >
-        <form>
+        <form @submit.prevent="handleSubmit">
           <h2 class="text-3xl text-center font-semibold mb-6">Add Job</h2>
 
           <div class="mb-4">
@@ -49,7 +53,7 @@ const form = reactive({
             >
             <input
               type="text"
-              v-model="form.name"
+              v-model="form.title"
               id="name"
               name="name"
               class="border rounded w-full py-2 px-3 mb-2"
